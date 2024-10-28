@@ -6,7 +6,7 @@
 /*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:34:15 by kzarins           #+#    #+#             */
-/*   Updated: 2024/10/28 15:31:56 by kzarins          ###   ########.fr       */
+/*   Updated: 2024/10/28 19:32:41 by kzarins          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #define NULL_SPACE_LEN 		1
@@ -14,7 +14,7 @@
 #define HEX_CHAR 			"0123456789abcdef"
 #define HEX_PREFIX			"0x"
 #include <stdlib.h>
-#include "form_handle.h"
+#include "format_handle.h"
 
 static int	char_spaces_needed(unsigned long num);
 static void	add_prefix(char *hex_represent);
@@ -75,12 +75,12 @@ static char	digit_to_hex(int dig)
 	free(hex_chart);
 	return (hex_code);
 }
-
-#include <stdio.h>
-int	main(void)
-{
-	printf("%s\n", int_to_hex(0));
-	printf("%s\n", int_to_hex(1234));
-}
+//
+//#include <stdio.h>
+//int	main(void)
+//{
+//	printf("%s\n", int_to_hex(0));
+//	printf("%s\n", int_to_hex(1234));
+//}
 // For compilation :
 // gcc int_to_hex.c ../libft/ft_memcpy.c ../libft/ft_strlcpy.c ../libft/ft_strlen.c

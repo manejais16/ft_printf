@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c_handle.c                                         :+:      :+:    :+:   */
+/*   i_handle.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 12:49:04 by kzarins           #+#    #+#             */
-/*   Updated: 2024/10/28 19:30:58 by kzarins          ###   ########.fr       */
+/*   Created: 2024/10/28 19:35:11 by kzarins           #+#    #+#             */
+/*   Updated: 2024/10/28 19:48:52 by kzarins          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "format_handle.h"
 
-void	c_handle(char c)
+void	i_handle(int num)
 {
-	write(STD_OUT, &c, sizeof(char));
+	char	*int_in_char;
+
+	int_in_char = ft_itoa(num);
+	if (!int_in_char)
+		return ;
+	write(STD_OUT, int_in_char, ft_strlen(int_in_char));
+	free(int_in_char);
 }
