@@ -6,40 +6,46 @@
 /*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:34:15 by kzarins           #+#    #+#             */
-/*   Updated: 2024/10/28 19:32:41 by kzarins          ###   ########.fr       */
+/*   Updated: 2024/10/29 21:17:06 by kzarins          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #define NULL_SPACE_LEN 		1
 #define HEX_PREFIX_LEN 		2
-#define HEX_CHAR 			"0123456789abcdef"
-#define HEX_PREFIX			"0x"
-#include <stdlib.h>
+#define HEX_CHAR_L_CASE 	"0123456789abcdef"
+#define HEX_CHAR_U_CASE		"0123456789ABCDEF"
+#define HEX_PREFIX_L_CASE	"0x"
+#define HEX_PREFIX_U_CASE	"0X"
 #include "format_handle.h"
 
 static int	char_spaces_needed(unsigned long num);
-static void	add_prefix(char *hex_represent);
-static char	digit_to_hex(int dig);
+static void	add_prefix(char *hex_represent, unsigned int flags);
+static char	digit_to_hex(int dig, unsigned int flags);
 
-char	*int_to_hex(unsigned long num)
+char	*int_to_hex(unsigned long num, unsigned int fla)
 {
 	int		output_len;
 	char	*hex_represent;
 	int		char_iter;
+	int		prefix_len;
 
+	prefix_len = 0;
 	output_len = char_spaces_needed(num);
 	char_iter = output_len;
+	if (fla & WITH_PREFIX)
+		prefix_len = HEX_PREFIX_LEN;
 	hex_represent = (char *) malloc(output_len + NULL_SPACE_LEN + \
-			HEX_PREFIX_LEN);
+			prefix_len);
 	if (!hex_represent)
 		return (0);
-	add_prefix(hex_represent);
+	if (prefix_len)
+		add_prefix(hex_represent, fla);
 	while (char_iter > 0)
 	{
 		char_iter--;
-		*(hex_represent + HEX_PREFIX_LEN + char_iter) = digit_to_hex(num % 16);
+		*(hex_represent + prefix_len + char_iter) = digit_to_hex(num % 16, fla);
 		num /= 16;
 	}
-	*(hex_represent + HEX_PREFIX_LEN + output_len) = '\0';
+	*(hex_represent + prefix_len + output_len) = '\0';
 	return (hex_represent);
 }
 
@@ -57,20 +63,26 @@ static int	char_spaces_needed(unsigned long num)
 	return (char_spaces);
 }
 
-static void	add_prefix(char *hex_represent)
+static void	add_prefix(char *hex_represent, unsigned int flags)
 {
-	ft_memcpy(hex_represent, HEX_PREFIX, HEX_PREFIX_LEN);
+	if (flags & UPPER_CASE_PREFIX)
+		ft_memcpy(hex_represent, HEX_PREFIX_U_CASE, HEX_PREFIX_LEN);
+	else
+		ft_memcpy(hex_represent, HEX_PREFIX_L_CASE, HEX_PREFIX_LEN);
 }
 
-static char	digit_to_hex(int dig)
+static char	digit_to_hex(int dig, unsigned int flags)
 {
 	char	*hex_chart;
 	char	hex_code;
 
-	hex_chart = (char *)malloc(ft_strlen(HEX_CHAR) + 1);
+	hex_chart = (char *)malloc(ft_strlen(HEX_CHAR_L_CASE) + 1);
 	if (!hex_chart)
 		return (0);
-	ft_strlcpy(hex_chart, HEX_CHAR, ft_strlen(HEX_CHAR) + 1);
+	if (flags & UPPER_CASE_CHAR)
+		ft_strlcpy(hex_chart, HEX_CHAR_U_CASE, ft_strlen(HEX_CHAR_U_CASE) + 1);
+	else
+		ft_strlcpy(hex_chart, HEX_CHAR_L_CASE, ft_strlen(HEX_CHAR_L_CASE) + 1);
 	hex_code = *(hex_chart + (dig % 16));
 	free(hex_chart);
 	return (hex_code);
@@ -79,8 +91,10 @@ static char	digit_to_hex(int dig)
 //#include <stdio.h>
 //int	main(void)
 //{
-//	printf("%s\n", int_to_hex(0));
-//	printf("%s\n", int_to_hex(1234));
+//	int flags = WITH_PREFIX /*| UPPER_CASE_PREFIX*/ | UPPER_CASE_CHAR;
+//	printf("%s\n", int_to_hex(0, flags));
+//	printf("%s\n", int_to_hex(1234, flags));
 //}
-// For compilation :
-// gcc int_to_hex.c ../libft/ft_memcpy.c ../libft/ft_strlcpy.c ../libft/ft_strlen.c
+///* For compilation :
+//gcc int_to_hex.c ../libft/ft_memcpy.c 
+//../libft/ft_strlcpy.c ../libft/ft_strlen.c */

@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   i_handle.c                                         :+:      :+:    :+:   */
+/*   x_handle.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 19:35:11 by kzarins           #+#    #+#             */
-/*   Updated: 2024/10/29 21:30:28 by kzarins          ###   ########.fr       */
+/*   Created: 2024/10/29 20:26:13 by kzarins           #+#    #+#             */
+/*   Updated: 2024/10/29 21:34:11 by kzarins          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "format_handle.h"
 
-int	i_handle(int num)
+int	x_handle(unsigned int num, e_hex_convert_flags flags)
 {
-	char	*int_in_char;
+	char	*result;
 	int		len;
 
-	int_in_char = ft_itoa(num);
-	if (!int_in_char)
+	result = int_to_hex(num, flags);
+	if (!result)
 		return ;
-	len = ft_strlen(int_in_char)
-	write(STD_OUT, int_in_char, len);
-	free(int_in_char);
+	len = ft_strlen(result);
+	write(STD_OUT, result, len);
+	free(result);
 	return (len);
 }
+

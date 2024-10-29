@@ -6,13 +6,14 @@
 /*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:15:26 by kzarins           #+#    #+#             */
-/*   Updated: 2024/10/28 19:32:02 by kzarins          ###   ########.fr       */
+/*   Updated: 2024/10/29 21:20:19 by kzarins          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "format_handle.h"
 
-void	s_handle(char *str)
+int	s_handle(char *str)
 {
 	ft_putstr_fd(str, STD_OUT);
+	return (ft_strlen(str));
 }

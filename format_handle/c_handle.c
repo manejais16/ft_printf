@@ -6,13 +6,14 @@
 /*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:49:04 by kzarins           #+#    #+#             */
-/*   Updated: 2024/10/28 19:30:58 by kzarins          ###   ########.fr       */
+/*   Updated: 2024/10/29 21:19:04 by kzarins          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "format_handle.h"
 
-void	c_handle(char c)
+int	c_handle(char c)
 {
 	write(STD_OUT, &c, sizeof(char));
+	return (1);
 }

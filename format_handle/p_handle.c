@@ -6,21 +6,24 @@
 /*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:15:43 by kzarins           #+#    #+#             */
-/*   Updated: 2024/10/28 19:49:54 by kzarins          ###   ########.fr       */
+/*   Updated: 2024/10/29 21:27:44 by kzarins          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "format_handle.h"
 
-void	p_handle(void *p)
+int	p_handle(void *p)
 {
 	char	*p_in_hex;
+	int		len;
 
-	p_in_hex = int_to_hex((unsigned long) p);
+	p_in_hex = int_to_hex((unsigned long) p, WITH_PREFIX);
 	if (!p_in_hex)
 		return ;
-	write(STD_OUT, p_in_hex, ft_strlen(p_in_hex));
+	len = ft_strlen(p_in_hex);
+	write(STD_OUT, p_in_hex, len);
 	free(p_in_hex);
+	return (len);
 }
 
 //#include <stdio.h>
