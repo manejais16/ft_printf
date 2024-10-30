@@ -6,7 +6,7 @@
 /*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:15:43 by kzarins           #+#    #+#             */
-/*   Updated: 2024/10/29 21:27:44 by kzarins          ###   ########.fr       */
+/*   Updated: 2024/10/30 18:59:31 by kzarins          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	p_handle(void *p)
 
 	p_in_hex = int_to_hex((unsigned long) p, WITH_PREFIX);
 	if (!p_in_hex)
-		return ;
+		return (-1);
 	len = ft_strlen(p_in_hex);
 	write(STD_OUT, p_in_hex, len);
 	free(p_in_hex);

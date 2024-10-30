@@ -20,7 +20,7 @@ int	p_handle(void *p);
 int	d_handle(int num);
 int	i_handle(int num);
 int	u_handle(unsigned int num);
-int	x_handle(unsigned int num, e_hex_convert_flags flags);
+int	x_handle(unsigned int num,enum e_hex_convert_flags flags);
 
 /* The function uses malloc so the result has to be free()!!!! */
 char	*int_to_hex(unsigned long num, unsigned int flags);

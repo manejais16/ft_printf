@@ -3,6 +3,7 @@
 
 #define STD_OUT 1
 
+#include <stdarg.h>
 #include "libft/libft.h"
 
 #endif
