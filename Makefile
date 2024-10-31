@@ -4,7 +4,8 @@ CFLAGS = -Wall -Werror -Wextra
 
 .PHONY: all clean fclean re
 
-VPATH = format_handle
+VPATH = format_handle \
+		libft
 
 FORMAT_HANDLE = c_handle.c s_handle.c p_handle.c d_handle.c \
 				i_handle.c u_handle.c x_handle.c int_to_hex.c \
@@ -18,10 +19,13 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(SRC) $(LIBFT).a
 	$(MAKE) -C $(LIBFT) 
 	cp $(LIBFT)/$(LIBFT).a $(NAME)
 	ar rs $(NAME) $(OBJ)	
+
+$(LIBFT).a:
+	$(MAKE) -C $(LIBFT)
 
 clean:
 	$(MAKE) -C $(LIBFT) clean
@@ -34,3 +38,6 @@ fclean: clean
 re: fclean
 	$(MAKE) -C $(LIBFT) re 
 	$(MAKE) all
+
+exe: all
+	gcc -o ftprintf -lftprintf -L. main.c
