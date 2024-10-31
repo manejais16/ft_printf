@@ -9,5 +9,6 @@ int	ft_printf(const char *input, ...);
 
 /* Return: char written to ouput; NOTE: DOES NOT ITERATE*/
 int	format_handle(char *str, va_list args);
+int	escape_sequence_handle(*input);
 
 #endif
