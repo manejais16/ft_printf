@@ -19,7 +19,7 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(SRC) $(LIBFT).a
+$(NAME): $(OBJ) $(LIBFT).a
 	$(MAKE) -C $(LIBFT) 
 	cp $(LIBFT)/$(LIBFT).a $(NAME)
 	ar rs $(NAME) $(OBJ)	
@@ -29,11 +29,11 @@ $(LIBFT).a:
 
 clean:
 	$(MAKE) -C $(LIBFT) clean
-	rm -r $(OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean
 	$(MAKE) -C $(LIBFT) fclean
-	rm $(NAME)
+	$(RM) $(NAME)
 
 re: fclean
 	$(MAKE) -C $(LIBFT) re 
