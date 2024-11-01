@@ -6,7 +6,7 @@
 /*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 20:26:13 by kzarins           #+#    #+#             */
-/*   Updated: 2024/10/30 19:01:51 by kzarins          ###   ########.fr       */
+/*   Updated: 2024/11/01 00:48:14 by kzarins          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "format_handle.h"
@@ -24,4 +24,3 @@ int	x_handle(unsigned int num, enum e_hex_convert_flags flags)
 	free(result);
 	return (len);
 }
-

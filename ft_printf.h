@@ -1,14 +1,27 @@
-# ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/01 00:58:44 by kzarins           #+#    #+#             */
+/*   Updated: 2024/11/01 00:58:46 by kzarins          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#define STD_OUT 1
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-#include <stdarg.h>
+# define STD_OUT 1
+
+# include <stdarg.h>
 
 int	ft_printf(const char *input, ...);
 
 /* Return: char written to ouput; NOTE: DOES NOT ITERATE*/
 int	format_handle(char *str, va_list args);
-int	escape_sequence_handle(*input);
+int	escape_sequence_handle(const char **input);
+int	output_format(const char **input, va_list args);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 21:08:02 by kzarins           #+#    #+#             */
-/*   Updated: 2024/10/30 19:17:17 by kzarins          ###   ########.fr       */
+/*   Updated: 2024/11/01 00:55:06 by kzarins          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "format_handle.h"
@@ -33,7 +33,7 @@ int	handle_format_leters(char *str, va_list args)
 	if (*str == 'c')
 		return (c_handle(va_arg(args, int)));
 	else if (*str == 's')
-		return (s_handle(va_arg(args, char *)));		
+		return (s_handle(va_arg(args, char *)));
 	else if (*str == 'p')
 		return (p_handle(va_arg(args, void *)));
 	else if (*str == 'd')
@@ -43,7 +43,7 @@ int	handle_format_leters(char *str, va_list args)
 	else if (*str == 'u')
 		return (u_handle(va_arg(args, unsigned int)));
 	else if (*str == 'x')
-		return (x_handle(va_arg(args, unsigned int), 0)); 
+		return (x_handle(va_arg(args, unsigned int), 0));
 	else if (*str == 'X')
 		return (x_handle(va_arg(args, unsigned int), UPPER_CASE_CHAR));
 	else

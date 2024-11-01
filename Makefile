@@ -11,9 +11,11 @@ FORMAT_HANDLE = c_handle.c s_handle.c p_handle.c d_handle.c \
 				i_handle.c u_handle.c x_handle.c int_to_hex.c \
 				ft_uitoa.c format_handle.c
 
+ESCAPE_SEQUENCE_HANDLE = escape_sequence_handle.c
+
 MAIN_FILES = ft_printf.c
 
-SRC = $(FORMAT_HANDLE) $(MAIN_FILES) 
+SRC = $(FORMAT_HANDLE) $(ESCAPE_SEQUENCE_HANDLE) $(MAIN_FILES)
 
 OBJ = $(SRC:.c=.o)
 
@@ -40,4 +42,4 @@ re: fclean
 	$(MAKE) all
 
 exe: all
-	gcc -o ftprintf -lftprintf -L. main.c
+	gcc -o a.out -lftprintf -L. main.c

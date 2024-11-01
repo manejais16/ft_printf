@@ -6,14 +6,15 @@
 /*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:54:27 by kzarins           #+#    #+#             */
-/*   Updated: 2024/10/28 20:04:37 by kzarins          ###   ########.fr       */
+/*   Updated: 2024/11/01 00:49:45 by kzarins          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "format_handle.h"
 
 static char	get_space_qty(unsigned int n);
 static char	*zero_case(char *result, unsigned int n);
-static void	int_to_str(char *result, char neg_flag, unsigned int n, char dig_count);
+static void	int_to_str(char *result, char neg_flag, \
+		unsigned int n, char dig_count);
 
 char	*ft_uitoa(unsigned int n)
 {
@@ -60,7 +61,8 @@ static char	*zero_case(char *result, unsigned int n)
 	return (result);
 }
 
-static void	int_to_str(char *result, char neg_flag, unsigned int n, char dig_count)
+static void	int_to_str(char *result, char neg_flag, \
+		unsigned int n, char dig_count)
 {
 	if (neg_flag)
 	{
