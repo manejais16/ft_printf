@@ -11,7 +11,7 @@ FORMAT_HANDLE = c_handle.c s_handle.c p_handle.c d_handle.c \
 				i_handle.c u_handle.c x_handle.c int_to_hex.c \
 				ft_uitoa.c format_handle.c
 
-ESCAPE_SEQUENCE_HANDLE = escape_sequence_handle.c
+ESCAPE_SEQUENCE_HANDLE = escape_sequence_handle.c write_hex.c
 
 MAIN_FILES = ft_printf.c
 

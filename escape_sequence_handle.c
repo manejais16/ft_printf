@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   escape_sequence_handle.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/02 03:11:34 by kzarins           #+#    #+#             */
+/*   Updated: 2024/11/02 03:11:36 by kzarins          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include <unistd.h>
 #define	MAX_HEX_LEN 2
 
 static int	write_escape_char(const char *input);
-static int	write_hex(const char **input);
 
 int	escape_sequence_handle(const char **input)
 {
@@ -52,14 +63,4 @@ static int	write_escape_char(const char *input)
 			*input == '\\' || *input == '\'' || *input == '\?')
 		return (1);
 	return (0);
-}
-
-static int	write_hex(const char **input)
-{
-	int current_hex_char;
-
-	current_hex_char = 0;
-	while (is_hex_char(**input + current_hex_char) && current_hex_char++ <= 2)
-		;
-
 }
