@@ -6,7 +6,7 @@
 /*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 00:58:44 by kzarins           #+#    #+#             */
-/*   Updated: 2024/11/02 03:05:54 by kzarins          ###   ########.fr       */
+/*   Updated: 2024/11/03 04:44:02 by kzarins          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 int	ft_printf(const char *input, ...);
 
 /* Return: char written to ouput; NOTE: DOES NOT ITERATE*/
-int	format_handle(char *str, va_list args);
+int	format_handle(char **str, va_list args);
 int	escape_sequence_handle(const char **input);
 int	output_format(const char **input, va_list args);
 int	write_hex(const char **input);

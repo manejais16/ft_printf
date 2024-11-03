@@ -6,7 +6,7 @@
 /*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 00:59:52 by kzarins           #+#    #+#             */
-/*   Updated: 2024/11/01 01:00:06 by kzarins          ###   ########.fr       */
+/*   Updated: 2024/11/03 04:49:07 by kzarins          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	ft_printf(const char *input, ...)
 	{
 		if (*input == '%')
 			output_len += output_format(&input, args);
-		else if (*input == '\\')
-			output_len += output_escape_sequence(&input);
+		//else if (*input == '\\')
+		//	output_len += output_escape_sequence(&input);
 		else
 			output_len += output_char(&input);
 	}
@@ -43,13 +43,13 @@ int	output_format(const char **input, va_list args)
 {
 	int	format_len;
 
-	format_len = format_handle((char *)*input, args);
+	format_len = format_handle((char **)input, args);
 	if (format_len == -1)
 	{
 		format_len = 6;
 		write(STD_OUT, "(null)", format_len);
 	}
-	*input = *input + 2;
+	*input = *input + 1;
 	return (format_len);
 }
 

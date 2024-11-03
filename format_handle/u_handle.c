@@ -6,12 +6,12 @@
 /*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:01:49 by kzarins           #+#    #+#             */
-/*   Updated: 2024/10/30 19:01:03 by kzarins          ###   ########.fr       */
+/*   Updated: 2024/11/03 04:15:31 by kzarins          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "format_handle.h"
 
-int	u_handle(unsigned int num)
+int	u_handle(unsigned int num, int field_width, int format_flags)
 {
 	char	*int_in_char;
 	int		len;

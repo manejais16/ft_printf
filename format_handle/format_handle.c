@@ -6,46 +6,95 @@
 /*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 21:08:02 by kzarins           #+#    #+#             */
-/*   Updated: 2024/11/01 00:55:06 by kzarins          ###   ########.fr       */
+/*   Updated: 2024/11/03 17:28:58 by kzarins          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "format_handle.h"
 
-int	handle_format_leters(char *str, va_list args);
+static int	collect_format_flags(char **str);
+static int	handle_format_leters(char *str, va_list args, \
+		int field_width, int form_flags);
+static int	get_field_width(char **str, int *form_flags);
 
-int	format_handle(char *str, va_list args)
+int	format_handle(char **str, va_list args)
 {
 	int	len;
+	int	format_flags;
+	int	field_width;
 
-	str++;
+	*str = *str + 1;
 	len = 0;
-	if (*str == '%')
+	format_flags = collect_format_flags(str);
+	field_width = get_field_width(str, &format_flags);
+	if (**str == '%')
 	{
-		len = c_handle('%');
+		len = c_handle('%', field_width, format_flags);
 		return (len);
 	}
-	len = handle_format_leters(str, args);
+	len = handle_format_leters(*str, args, field_width, format_flags);
 	return (len);
 }
 
-int	handle_format_leters(char *str, va_list args)
+static int	handle_format_leters(char *str, va_list args, \
+		int field_width, int form_flags)
 {
 	if (*str == 'c')
-		return (c_handle(va_arg(args, int)));
+		return (c_handle(va_arg(args, int), field_width, form_flags));
 	else if (*str == 's')
-		return (s_handle(va_arg(args, char *)));
+		return (s_handle(va_arg(args, char *), field_width, form_flags));
 	else if (*str == 'p')
-		return (p_handle(va_arg(args, void *)));
+		return (p_handle(va_arg(args, void *), field_width, form_flags));
 	else if (*str == 'd')
-		return (d_handle(va_arg(args, int)));
+		return (d_handle(va_arg(args, int), field_width, form_flags));
 	else if (*str == 'i')
-		return (i_handle(va_arg(args, int)));
+		return (i_handle(va_arg(args, int), field_width, form_flags));
 	else if (*str == 'u')
-		return (u_handle(va_arg(args, unsigned int)));
+		return (u_handle(va_arg(args, unsigned int), field_width, form_flags));
 	else if (*str == 'x')
-		return (x_handle(va_arg(args, unsigned int), 0));
+		return (x_handle(va_arg(args, unsigned int), field_width, form_flags));
 	else if (*str == 'X')
-		return (x_handle(va_arg(args, unsigned int), UPPER_CASE_CHAR));
+	{
+		form_flags |= UPPER_CASE_CHAR;
+		return (x_handle(va_arg(args, unsigned int), field_width, form_flags));
+	}
 	else
 		return (-1);
+}
+
+static int	collect_format_flags(char **str)
+{
+	int flag;
+
+	flag = 0;
+	while (**str == '#' || **str == ' ' || **str == '+' || \
+			**str == '0' || **str == '-')
+	{
+		if (**str == '#')
+			flag |= NUMBER_SIGN;
+		if (**str == ' ')
+			flag |= SPACE;
+		if (**str == '+')
+			flag |= PLUS_SING;
+		if (**str == '0')
+			flag |= ZEROS;
+		if (**str == '-')
+			flag |= RIGHT_PAD;;
+		*str = *str + 1;
+	}
+	return (flag);
+}
+
+static int	get_field_width(char **str, int *form_flags)
+{
+	int	width_requirement;
+
+	width_requirement = 0;
+	if (ft_isdigit(**str))
+	{
+		*form_flags |= WITH_PADDING;
+		width_requirement = ft_atoi(*str);
+	}
+	while (ft_isdigit(**str))
+		*str = *str + 1;
+	return (width_requirement);
 }

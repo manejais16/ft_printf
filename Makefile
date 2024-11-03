@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 LIBFT = libft
-CFLAGS = -Wall -Werror -Wextra
+#CFLAGS = -Wall -Werror -Wextra
 
 .PHONY: all clean fclean re
 

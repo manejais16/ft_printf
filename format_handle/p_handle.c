@@ -6,13 +6,13 @@
 /*   By: kzarins <kzarins@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:15:43 by kzarins           #+#    #+#             */
-/*   Updated: 2024/10/30 18:59:31 by kzarins          ###   ########.fr       */
+/*   Updated: 2024/11/03 04:16:35 by kzarins          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "format_handle.h"
 
-int	p_handle(void *p)
+int	p_handle(void *p, int field_width, int format_flags)
 {
 	char	*p_in_hex;
 	int		len;
